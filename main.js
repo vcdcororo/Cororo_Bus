@@ -9,7 +9,7 @@ function moveBus() {
 
 function lightCircles() {
   let scrollPosition = window.pageXOffset;
-  let threshold = 1520;
+  let threshold = 1720;
   let circles = document.querySelectorAll('.circle');
 
   circles.forEach(function(circle, index) {
