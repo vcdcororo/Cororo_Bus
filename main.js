@@ -91,13 +91,13 @@ document.addEventListener("scroll", function() {
       showSection(".ko");
   } else if (scrollPosition >= 1400 && scrollPosition < 3000) {
       showSection(".sol");
-  } else if (scrollPosition >= 3000 && scrollPosition < 4400) {
+  } else if (scrollPosition >= 3000 && scrollPosition < 4600) {
       showSection(".ye");
-  } else if (scrollPosition >= 4400 && scrollPosition < 6300) {
+  } else if (scrollPosition >= 4600 && scrollPosition < 6600) {
       showSection(".kim");
-  } else if (scrollPosition >= 6300 && scrollPosition < 8000) {
+  } else if (scrollPosition >= 6600 && scrollPosition < 8200) {
       showSection(".sang");
-  } else if (scrollPosition >= 8000 && scrollPosition < 8800) {
+  } else if (scrollPosition >= 8200 && scrollPosition < 8800) {
       showSection(".kwon");
   }
 });
