@@ -57,7 +57,7 @@ function moveBus() {
   let busWidth = document.getElementById('bus').offsetWidth;
 
   // Calculate the maximum scrollable width of the page (700% + 500px)
-  let totalWidth = (800 / 135) * window.innerWidth + 0;
+  let totalWidth = (600 / 135) * window.innerWidth + 0;
 
   // Calculate the maximum position of the bus within the path
   let maxPosition = (pathWidth - busWidth) * (scrollPositionX / totalWidth);
