@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <h1 id="title"><span class="thin">Where Lies Your</span> <br><span class="bold">Destination?</span></h1>
+
+    <div class="cover">
+        <p class="first-parallel"></p>
+    </div>
+    <div class="cover">
+        <p class="second-parallel"></p>
+    </div>
+    <a href="./1호선.html" target="_self">
+        <img src="1line.png" alt="Image 1" class="image1"data-tooltip="1호선">
+    </a>
+    <a href="./2호선.html" target="_self">
+        <img src="line2.png" alt="Image 2" class="image2" data-tooltip="2호선">
+    </a>
+    
+    <img src="line3.png" alt="Image 3" class="image3"data-tooltip="3호선 공사중">
+    <a href="./4호선.html" target="_self">
+        <img src="line4.png" alt="Image 4" class="image4" data-tooltip="4호선">
+    </a>
+    <img src="line5.png" alt="Image 5" class="image5" data-tooltip="5호선 공사 중">
+    <img src="line6.png" alt="Image 6" class="image6" data-tooltip="6호선 공사 중">
+    <img src="line7.png" alt="Image 7" class="image7" data-tooltip="7호선 공사 중">
+    <img src="line8.png" alt="Image 8" class="image8" data-tooltip="8호선 공사 중">
+    <img src="line9.png" alt="Image 9" class="image9" data-tooltip="9호선 공사 중">
+    
+
+    <div id="messageBox"></div>
+
+    <script src="https://unpkg.com/typeit@8.3.3/dist/index.umd.js"></script>
+    <script>
+        function showMessage(message) {
+            document.getElementById('messageBox').textContent = message;
+        }
+
+        function hideMessage() {
+            document.getElementById('messageBox').textContent = '';
+        }
+
+         function startTitleAnimation() {
+            const titleElement = document.querySelector('#title');
+
+            const typeItInstance = new TypeIt(titleElement, {
+                afterComplete: function (instance) {
+                    // 애니메이션이 끝나면 3초 후에 다시 시작
+                    setTimeout(startTitleAnimation, 3000);
+                }
+            });
+            
+            // 타이핑 애니메이션 설정
+            typeItInstance
+                .pause(1000)
+                .delete(12, { delay: 1000 })
+                .type('<span class="bold">Journey?</span>')
+                .pause(6000)
+                .delete(25)
+                .pause(1000)
+                .type('<span class="thin">Where Lies Your</span> <br><span class="bold">Destination?</span>')
+                .go();
+        }
+
+        // 페이지 로드시 텍스트 애니메이션 시작
+        startTitleAnimation();
+
+        const pTag1 = document.querySelector('.first-parallel');
+        const pTag2 = document.querySelector('.second-parallel');
+
+        const textArr1 = '3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선'.split('  ');
+        const textArr2 = '3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선 3호선 6호선 1호선 2호선 9호선 4호선 5호선 8호선 7호선'.split('  ');
+
+       
+        function initTexts(element, textArray){
+    // 텍스트 배열의 내용을 요소 내에 직접 설정합니다.
+    element.innerText = textArray.join('\u00A0\u00A0\u00A0\u00A0');
+}
+
+        initTexts(pTag1,textArr1);
+        initTexts(pTag2,textArr2);
+
+        let count1 = 0
+        let count2 = 0
+
+        function marqueeText(count, element, direction){
+            if (count > element.scrollWidth / 2){
+                element.style.transform = 'translateX(0)'
+                count = 0
+            }
+            element.style.transform = `translateX(${count * direction}px)`;
+            return count
+        }
+
+        function animate(){
+            count1++
+            count2++
+
+            count1 = marqueeText(count1, pTag1, -1);
+            count2 = marqueeText(count2, pTag2, 1);
+
+            window.requestAnimationFrame(animate)
+        }
+
+        animate()
+
+        document.addEventListener('DOMContentLoaded', function() {
+    const tooltipElements = document.querySelectorAll('img[data-tooltip]');
+
+    tooltipElements.forEach(el => {
+        const tooltipText = el.getAttribute('data-tooltip');
+        const tooltipDiv = document.createElement('div');
+        tooltipDiv.className = 'tooltip';
+        tooltipDiv.textContent = tooltipText;
+        document.body.appendChild(tooltipDiv);
+
+        el.addEventListener('mouseenter', function(e) {
+            tooltipDiv.style.visibility = 'visible';
+            tooltipDiv.style.opacity = '1';
+            tooltipDiv.style.top = (e.pageY + 10) + 'px';
+            tooltipDiv.style.left = (e.pageX + 10) + 'px';
+        });
+
+        el.addEventListener('mousemove', function(e) {
+            tooltipDiv.style.top = (e.pageY + 10) + 'px';
+            tooltipDiv.style.left = (e.pageX + 10) + 'px';
+        });
+
+        el.addEventListener('mouseleave', function() {
+            tooltipDiv.style.visibility = 'hidden';
+            tooltipDiv.style.opacity = '0';
+        });
+    });
+});
+
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
