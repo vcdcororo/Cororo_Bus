@@ -95,9 +95,9 @@ document.addEventListener("scroll", function() {
       showSection(".ye");
   } else if (scrollPosition >= 4600 && scrollPosition < 6600) {
       showSection(".kim");
-  } else if (scrollPosition >= 6600 && scrollPosition < 8200) {
+  } else if (scrollPosition >= 6600 && scrollPosition < 8800) {
       showSection(".sang");
-  } else if (scrollPosition >= 8200 && scrollPosition < 8800) {
+  } else if (scrollPosition >= 8800 && scrollPosition < 9200) {
       showSection(".kwon");
   }
 });
